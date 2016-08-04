@@ -303,7 +303,7 @@ module CarrierWave
     def sanitize(name)
       name = name.gsub("\\", "/") # work-around for IE
       name = File.basename(name)
-      name = ::Digest::MD5.hexdigest(name) + '.' + extension #name.gsub(sanitize_regexp,"_")
+      name = ::Digest::MD5.hexdigest(name) + '.' + split_extension(name)[1] #name.gsub(sanitize_regexp,"_")
       name = "_#{name}" if name =~ /\A\.+\z/
       name = "unnamed" if name.size == 0
       return name.mb_chars.to_s
